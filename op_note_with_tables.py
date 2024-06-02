@@ -1,7 +1,11 @@
 # opening a document:
 from docx import Document
 from docx.shared import Pt  # imports library to change font typeface and size
+from datetime import datetime  # imports date and time module for document
+now = datetime.now()
 
+today_date = now.strftime("%d-%b-%Y")
+current_time = now.strftime("%H:%M")
 
 document = Document()
 # set document font and size
@@ -16,8 +20,8 @@ patient_header.add_run("PATIENT DETAILS").bold = True
 
 # add a table
 
-table = document.add_table(rows=2, cols=6)
-
+table = document.add_table(rows=2, cols=8)
+    
 name_and_dob_gender = table.rows[0]
 name_and_dob_gender.cells[0].paragraphs[0].add_run("NAME").bold = True  # styles text to bold
 name_and_dob_gender.cells[1].text = "Bob Smith"
@@ -25,7 +29,9 @@ name_and_dob_gender.cells[2].paragraphs[0].add_run("DATE OF BIRTH:").bold = True
 name_and_dob_gender.cells[3].text = "11/02/1974"
 name_and_dob_gender.cells[4].paragraphs[0].add_run("GENDER:").bold = True
 name_and_dob_gender.cells[5].text = "Male"
-
+current_datetime.cells[6].text = "DATE"
+current_datetime.cells[7].text = today_date
+name_and_dob_gender.cells[6].text = today_date
 
 mrn_and_nhs_no_asa= table.rows[1]
 mrn_and_nhs_no_asa.cells[0].paragraphs[0].add_run("MRN:").bold = True
